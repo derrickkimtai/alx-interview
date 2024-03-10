@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+It generates a pascal trinagle
+"""
+
 
 def pascal_triangle(n):
     """
