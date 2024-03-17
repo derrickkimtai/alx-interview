@@ -20,4 +20,3 @@ def canUnlockAll(boxes):
                 queue.append(key)
 
     return all(visited)
-
