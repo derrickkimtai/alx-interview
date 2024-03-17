@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""documented"""
+
+
 def canUnlockAll(boxes):
     """well documented"""
     if not boxes:
