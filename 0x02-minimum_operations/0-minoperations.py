@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """ Minimum Operations """
+
+
 def minOperations(n):
     """ Minimum Operations """
-    if n < 2: 
+    if n < 2:
         return 0
     if n % 2 == 0:
         return minOperations(n // 2) + 2
