@@ -1,0 +1,1 @@
+this are direcories that are about techical interview question
