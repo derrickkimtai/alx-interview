@@ -3,12 +3,16 @@
 
 import sys
 
+
 def isSafe(board, row, col):
     """Check if a queen can be placed on board[row][col]"""
     for i in range(col):
-        if board[i] == row or board[i] == row - col + i or board[i] == row + col - i:
+        if board[i] == row or \
+           board[i] == row - col + i or \
+           board[i] == row + col - i:
             return False
     return True
+
 
 def solveNQUtil(board, col):
     """Solve N queens"""
@@ -22,10 +26,12 @@ def solveNQUtil(board, col):
             solveNQUtil(board, col + 1)
             board[col] = -1
 
+
 def solveNQ(n):
     """Solve N queens"""
     board = [-1 for i in range(n)]
     solveNQUtil(board, 0)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -40,4 +46,3 @@ if __name__ == "__main__":
         print("N must be at least 4")
         sys.exit(1)
     solveNQ(n)
-    
