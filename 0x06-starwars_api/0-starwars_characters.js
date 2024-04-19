@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-function printMovieCharacters(movieId) {
+function printMovieCharacters (movieId) {
   const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
   request(url, function (error, response, body) {
