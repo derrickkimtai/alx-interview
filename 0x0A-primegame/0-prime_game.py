@@ -1,3 +1,6 @@
+#!/i/usr/bin/python3
+"""Prime Game"""
+
 def isWinner(x, nums):
   """
   This function determines the winner of a game between Maria and Ben
