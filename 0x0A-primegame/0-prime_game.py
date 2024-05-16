@@ -2,6 +2,7 @@
 """prime game"""
 
 def isWinner(x, nums):
+    """is winer"""
     if not nums or x < 1:
         return None
 
