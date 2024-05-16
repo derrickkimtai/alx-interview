@@ -1,41 +1,28 @@
 #!/usr/bin/python3
-"""Prime Game"""
+"""
+Prime Game
+"""
+
 
 def isWinner(x, nums):
-  """
-  This function determines the winner of a game between Maria and Ben
-  given the number of rounds (x) and an array of integers (nums) for each round.
+    """
+    determine who the winner of each game is.
+    """
+    maria_wins = 0
+    ben_wins = 0
 
-  Args:
-      x: The number of rounds of the game.
-      nums: An array of integers representing the set of consecutive integers
-          from 1 up to and including n for each round.
+    for num in nums:
+        prime_count = sum(1 for i in range(2, num + 1)
+                          if all(i % j != 0 for j in range(2, int(i ** 0.5) + 1)))
 
-  Returns:
-      The name of the player who won the most rounds ("Maria" or "Ben"), or None
-          if the winner cannot be determined.
-  """
+        if prime_count % 2 == 0:
+            ben_wins += 1
+        else:
+            maria_wins += 1
 
-  maria_wins = ben_wins = 0
-  for _ in range(x):
-    n = len(nums)
-    # If n is even, Ben wins as he can always remove the number Maria picks
-    # and all its multiples.
-    if n % 2 == 0:
-      ben_wins += 1
+    if maria_wins > ben_wins:
+        return 'Maria'
+    elif maria_wins < ben_wins:
+        return 'Ben'
     else:
-      # If n is odd and greater than 1, Maria wins as she can pick 2 first.
-      if n > 1:
-        maria_wins += 1
-      # If n is 1, Ben wins.
-      else:
-        ben_wins += 1
-    nums = []  # Reset the set of numbers for the next round
-
-  # Return the player with the most wins, or None if tied.
-  if maria_wins > ben_wins:
-    return "Maria"
-  elif ben_wins > maria_wins:
-    return "Ben"
-  else:
-    return None
+        return None
