@@ -1,27 +1,54 @@
 #!/usr/bin/python3
-"""
-Prime Game
-"""
+""" Prime Game """
+
+
+def isprime(n):
+    """ Return prime number """
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+
+def delete_numbers(n, nums):
+    """ Remove numbers - return zero """
+    for i in range(len(nums)):
+        if nums[i] % n == 0:
+            nums[i] = 0
 
 
 def isWinner(x, nums):
+    """ Return name of player that won
+    most rounds
     """
-    Prime Game
-    """
-    maria_wins = 0
-    ben_wins = 0
-
-    for num in nums:
-        prime_count = sum(1 for i in range(2, num + 1) if all(i % j != 0 for j in range(2, int(i ** 0.5) + 1)))
-
-        if prime_count % 2 == 0:
-            ben_wins += 1
+    nums.sort()
+    winner = False
+    Maria = 0
+    Ben = 0
+    for game in range(x):
+        # prints("game# ", game+1)
+        nums2 = list(range(1, nums[game] + 1))
+        # print("nums: ", nums2)
+        turn = 0
+        while True:
+            
+            change = False
+            for i, n in enumerate(nums2):
+                
+                if n > 1 and isprime(n):
+                    delete_numbers(n, nums2)
+                    change = True
+                    turn += 1
+                    break
+            
+            if change is False:
+                break
+        if turn % 2 != 0:
+            Maria += 1
         else:
-            maria_wins += 1
-
-    if maria_wins > ben_wins:
-        return 'Maria'
-    elif maria_wins < ben_wins:
-        return 'Ben'
-    else:
+            Ben += 1
+        
         return None
+    if Maria > Ben:
+        return "Maria"
+    return "Ben"
