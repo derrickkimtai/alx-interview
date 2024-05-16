@@ -1,32 +1,29 @@
 #!/usr/bin/python3
-"""Prime Game"""
+
 def isWinner(x, nums):
-    """Prime Game"""
     if not nums or x < 1:
         return None
-    n = max(nums)
-    sieve = [1] * (n + 1)
+
+    # Step 1: Sieve of Eratosthenes to find primes
+    max_num = max(nums)
+    sieve = [1] * (max_num + 1)
     sieve[0] = sieve[1] = 0
-    for i in range(2, int(n ** 0.5) + 1):
+    for i in range(2, int(max_num ** 0.5) + 1):
         if sieve[i] == 1:
-            for j in range(i * i, n + 1, i):
+            for j in range(i * i, max_num + 1, i):
                 sieve[j] = 0
-    sieve = [i for i in range(n + 1) if sieve[i] == 1]
-    m = len(sieve)
-    dp = [0] * (n + 1)
-    for i in range(1, n + 1):
-        dp[i] = dp[i - 1]
-        for j in range(m):
-            if sieve[j] > i:
-                break
-            if not dp[i - sieve[j]]:
-                dp[i] = 1
-                break
-    p1 = 0
-    for i in nums:
-        p1 += dp[i]
-    if p1 * 2 == len(nums):
-        return None
-    if p1 * 2 < len(nums):
+    primes = [i for i in range(max_num + 1) if sieve[i] == 1]
+
+    # Step 2: Determine winning positions for Maria
+    wins_for_maria = 0
+    for num in nums:
+        if num in primes:
+            wins_for_maria += 1
+
+    # Step 3: Compare Maria's wins to total games played
+    if wins_for_maria == 0:
         return "Ben"
-    return "Maria"
+    elif wins_for_maria % 2 == 0:
+        return "Maria"
+    else:
+        return "Ben"
