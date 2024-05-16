@@ -2,6 +2,7 @@
 """Prime Game"""
 
 def isWinner(x, nums):
+  """Prime Game"""
   maria_wins = ben_wins = 0
   for _ in range(x):
     n = len(nums)
